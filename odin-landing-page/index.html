@@ -3,39 +3,82 @@
   <head>
     <meta charset="utf-8" />
     <title>Landing Page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body class="body">
-
     <div class="header">
-      <div class="logo">Header Logo</div>
-      <div class="right-links">
-        <ul>
-          <li><a href="#">header link one</a></li>
-          <li><a href="#">header link two</a></li>
-          <li><a href="#">header link three</a></li>
-        </ul>
-      </div>
+      <div class="header-logo">Header Logo</div>
+      <ul class="right-links">
+        <li><a href="#">header link one</a></li>
+        <li><a href="#">header link two</a></li>
+        <li><a href="#">header link three</a></li>
+      </ul>
     </div>
 
     <ul class="container">
-      <li class="card">
-        two elements side by side.
+      <li class="hero-card">
+        <div class="hero-intro">
+          <div class="hero-main">This website is awesome</div>
+          <div class="hero-secondary">
+            This website has some subtext that goes here under the main tile.
+            It's a smaller font and the color is lower contrast.
+          </div>
+          <button class="sign-up">Sign up</button>
+        </div>
+        <div class="placeholder">this is a placeholder for an image</div>
       </li>
+
       <li class="card">
-        header then four images.
+        <div class="information-header">Some random information.</div>
+        <ul class="gallery">
+          <item>
+            <img src="" alt="barberry" />
+            <div class="text">
+              this is some subtext under an illustration or image
+            </div>
+          </item>
+          <item>
+            <img src="" alt="chili" />
+            <div class="text">
+              this is some subtext under an illustration or image
+            </div>
+          </item>
+          <item>
+            <img src="" alt="pepper" />
+            <div class="text">
+              this is some subtext under an illustration or image
+            </div>
+          </item>
+          <item>
+            <img src="" alt="saffron" />
+            <div class="text">
+              this is some subtext under an illustration or image
+            </div>
+          </item>
+        </ul>
       </li>
+
       <li class="card">
-        centered quote.
+        <div class="quote">
+          This is an inspiring quote, or a testimonial from a customer. Maybe
+          it's just filling up space or maybe people will actually read it. Who
+          knows? All I know is that it looks nice.
+        </div>
+        <div class="attribution">-Thor, God of Thunder</div>
       </li>
+
       <li class="card">
-        centered box with button inside
+        <div class="action-box">
+          <div class="text">Call to action! It's time!</div>
+          <div class="text">
+            Sign up for our product by clicking that button right over ther!
+          </div>
+          <button class="sign-up">Sign up</button>
+        </div>
       </li>
     </ul>
 
     <div class="footer">Copyright © The Odin Project 2021</div>
-
   </body>
-
 </html>
