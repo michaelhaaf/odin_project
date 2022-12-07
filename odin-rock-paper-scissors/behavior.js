@@ -9,8 +9,14 @@ function getComputerChoice() {
   return choices[choice];
 }
 
-function playRound(playerSelection, computerSelection) {
-  playerSelection = playerSelection.toLowerCase();
+
+function playRound(e) {
+  const pScore = document.querySelector("#pScore");
+  const cScore = document.querySelector("#cScore");
+
+  const playerSelection = e.target.textContent.toLowerCase();
+  const computerSelection = getComputerChoice();
+  document.querySelector("#cChoice").textContent = capitalize(computerSelection);
 
   if (playerSelection === computerSelection) {
     result = `Tie! ${capitalize(playerSelection)} and ${capitalize(
@@ -24,34 +30,17 @@ function playRound(playerSelection, computerSelection) {
     result = `You win! ${capitalize(playerSelection)} beats ${capitalize(
       computerSelection
     )}`;
+    pScore.textContent = 1 + Number.parseInt(pScore.textContent);
   } else {
     result = `You lose! ${capitalize(computerSelection)} beats ${capitalize(
       playerSelection
     )}`;
+    cScore.textContent = 1 + Number.parseInt(pScore.textContent);
   }
 
-  return result;
+  document.querySelector("#result").textContent = result;
 }
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt();
-    const computerSelection = getComputerChoice();
-    console.log(`Player selection: ${playerSelection}`);
-    console.log(`Computer selection: ${computerSelection}`);
-    result = playRound(playerSelection, computerSelection);
-    if (result.includes("You win")) {
-      playerScore++;
-    } else if (result.includes("You lose")) {
-      computerScore++;
-    }
-    console.log(result)
-    console.log(`Player score: ${playerScore}`)
-    console.log(`Computer score: ${computerScore}`)
-  }
-  console.log(`Game over!`)
-}
 
-game();
+const buttons = Array.from(document.querySelectorAll("button"));
+buttons.forEach((button) => button.addEventListener("click", playRound));

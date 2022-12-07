@@ -1,0 +1,28 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#about {
+  display: flex;
+  flex: 1;
+}
+
+#game {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  border: 2px solid black;
+}
+
+#scoreboard {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#playarea {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
