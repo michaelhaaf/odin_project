@@ -11,6 +11,7 @@ const opacityLabel = document.querySelector("#opacityLabel");
 
 const DEFAULT_COLOR = "#000000";
 const DEFAULT_ERASER = "#FFFFFF";
+const DEFAULT_OPACITY = 1.00;
 
 // JS Pattern: events are "short-lived"; to combine events, decide on state
 let mouseDown = false;
@@ -20,12 +21,18 @@ function generateRandomColorHex() {
   return `#${Math.floor(Math.random() * 256 ** 3).toString(16)}`;
 }
 
+function updateSelectedColor(newColorHex) {
+  selectedColor.value = newColorHex;
+  selectedColor.style.opacity = opacityRange.value;
+}
+
 function updatePixelColor(e) {
   if (e.type === "mouseover" && !mouseDown) return;
   if (activeModeBtn === randomModeBtn) {
-    selectedColor.value = generateRandomColorHex();
+    updateSelectedColor(generateRandomColorHex());
   }
   this.style.backgroundColor = selectedColor.value;
+  this.style.opacity = opacityRange.value;
 }
 
 function resetBoard() {
@@ -46,9 +53,9 @@ function setupSketchBoard(size) {
   }
 }
 
-function updateOpacityLabel(e) {
-  const percentage = ((100 * this.value) / 255).toFixed(2);
-  opacityLabel.textContent = `${percentage}%`;
+function updateOpacity(e) {
+  opacityLabel.textContent = opacityRange.value;
+  updateSelectedColor(selectedColor.value);
 }
 
 function updateSizeLabel(e) {
@@ -66,13 +73,13 @@ function selectMode(e) {
   } else if (activeModeBtn === eraserModeBtn) {
     newColor = DEFAULT_ERASER;
   }
-  selectedColor.value = newColor;
+  updateSelectedColor(newColor);
 }
 
 sketchBoard.addEventListener("mousedown", () => (mouseDown = true));
 sketchBoard.addEventListener("mouseup", () => (mouseDown = false));
 sizeRange.addEventListener("input", updateSizeLabel);
-opacityRange.addEventListener("input", updateOpacityLabel);
+opacityRange.addEventListener("input", updateOpacity);
 
 colorModeBtn.addEventListener("click", selectMode);
 randomModeBtn.addEventListener("click", selectMode);
@@ -81,5 +88,6 @@ resetBoardBtn.addEventListener("click", resetBoard);
 
 window.onload = () => {
   setupSketchBoard(sizeRange.value);
-  selectedColor.value = DEFAULT_COLOR;
+  opacityRange.value = DEFAULT_OPACITY;
+  updateSelectedColor(DEFAULT_COLOR);
 };
