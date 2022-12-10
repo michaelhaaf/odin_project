@@ -16,24 +16,16 @@ const DEFAULT_ERASER = "#FFFFFF";
 let mouseDown = false;
 let activeModeBtn = colorModeBtn;
 
+function generateRandomColorHex() {
+  return `#${Math.floor(Math.random() * 256 ** 3).toString(16)}`;
+}
+
 function updatePixelColor(e) {
   if (e.type === "mouseover" && !mouseDown) return;
-
-  // this.style.backgroundColor = selectedColor.style.backgroundColor;
-  let newColor = DEFAULT_COLOR;
   if (activeModeBtn === randomModeBtn) {
-    const randomColor = Math.floor(Math.random() * 256 ** 3).toString(16);
-    newColor = `#${randomColor}`;
-  } else if (activeModeBtn === colorModeBtn) {
-    newColor = selectedColor.value;
-  } else if (activeModeBtn === eraserModeBtn) {
-    newColor = DEFAULT_ERASER;
-  } 
-
-  // newColor += opacityRange.value.toString(16);
-  selectedColor.value = newColor;
-  this.style.backgroundColor = newColor;
-
+    selectedColor.value = generateRandomColorHex();
+  }
+  this.style.backgroundColor = selectedColor.value;
 }
 
 function resetBoard() {
@@ -55,7 +47,7 @@ function setupSketchBoard(size) {
 }
 
 function updateOpacity(e) {
-  const percentage = (100 * this.value / 255).toFixed(2)
+  const percentage = ((100 * this.value) / 255).toFixed(2);
   opacityValue.textContent = `${percentage}%`;
 }
 
@@ -67,6 +59,14 @@ function selectMode(e) {
   activeModeBtn.classList.remove("active");
   this.classList.add("active");
   activeModeBtn = this;
+
+  let newColor = selectedColor.value;
+  if (activeModeBtn === randomModeBtn) {
+    newColor = generateRandomColorHex();
+  } else if (activeModeBtn === eraserModeBtn) {
+    newColor = DEFAULT_ERASER;
+  }
+  selectedColor.value = newColor;
 }
 
 sketchBoard.addEventListener("mousedown", () => (mouseDown = true));
@@ -78,7 +78,6 @@ colorModeBtn.addEventListener("click", selectMode);
 randomModeBtn.addEventListener("click", selectMode);
 eraserModeBtn.addEventListener("click", selectMode);
 resetBoardBtn.addEventListener("click", resetBoard);
-
 
 window.onload = () => {
   setupSketchBoard(sizeRange.value);
