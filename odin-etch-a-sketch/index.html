@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Etch-a-sketch</title>
+    <script src="./app.js" defer></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="body">
+    <header class="header">
+      <h1 class="title">Etch-a-sketch</h1>
+    </header>
+    <main class="main">
+      <div class="settings">
+        <input type="color" id="selectedColor" class="selectedColor" />
+        <button id="colorModeBtn" class="active">Color Mode</button>
+        <button id="randomModeBtn">Random Mode</button>
+        <button id="eraserModeBtn">Eraser Mode</button>
+        <button id="resetBoardBtn">Reset Board</button>
+        <figure class="slider">
+          <label for="sizeRange">Board dimensions</label>
+          <input id="sizeRange" type="range" value="16" min="1" max="100" />
+          <div id="sizeValue">16 x 16</div>
+        </figure>
+        <figure class="slider">
+          <label for="opacityRange">Opacity</label>
+          <input id="opacityRange" type="range" value="255" min="0" max="255" />
+          <div id="opacityValue">100%</div>
+        </figure>
+      </div>
+      <div id="sketchBoard" class="sketchBoard"></div>
+    </main>
+    <footer class="footer">
+      <p>footer content</p>
+    </footer>
+  </body>
+</html>
