@@ -1,3 +1,7 @@
+const DEFAULT_COLOR = "#000000";
+const DEFAULT_ERASER = "#FFFFFF";
+const DEFAULT_OPACITY = 1.0;
+
 const sketchBoard = document.querySelector("#sketchBoard");
 const selectedColor = document.querySelector("#selectedColor");
 const colorModeBtn = document.querySelector("#colorModeBtn");
@@ -9,21 +13,58 @@ const sizeLabel = document.querySelector("#sizeLabel");
 const opacityRange = document.querySelector("#opacityRange");
 const opacityLabel = document.querySelector("#opacityLabel");
 
-const DEFAULT_COLOR = "#000000";
-const DEFAULT_ERASER = "#FFFFFF";
-const DEFAULT_OPACITY = 1.00;
-
-// JS Pattern: events are "short-lived"; to combine events, decide on state
 let mouseDown = false;
 let activeModeBtn = colorModeBtn;
 
-function generateRandomColorHex() {
-  return `#${Math.floor(Math.random() * 256 ** 3).toString(16)}`;
+sketchBoard.addEventListener("mousedown", () => (mouseDown = true));
+sketchBoard.addEventListener("mouseup", () => (mouseDown = false));
+sizeRange.addEventListener("input", updateSizeLabel);
+opacityRange.addEventListener("input", updateOpacity);
+colorModeBtn.addEventListener("click", selectMode);
+randomModeBtn.addEventListener("click", selectMode);
+eraserModeBtn.addEventListener("click", selectMode);
+resetBoardBtn.addEventListener("click", resetBoard);
+
+/*
+ * Window load event and methods
+ */
+function setupSketchBoard(size) {
+  sketchBoard.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  sketchBoard.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+  for (let i = 0; i < size * size; i++) {
+    const pixel = document.createElement("div");
+    pixel.classList.add("pixel");
+    pixel.addEventListener("mouseover", updatePixelColor);
+    pixel.addEventListener("mousedown", updatePixelColor);
+    sketchBoard.appendChild(pixel);
+  }
 }
 
 function updateSelectedColor(newColorHex) {
   selectedColor.value = newColorHex;
   selectedColor.style.opacity = opacityRange.value;
+}
+
+window.onload = () => {
+  setupSketchBoard(sizeRange.value);
+  opacityRange.value = DEFAULT_OPACITY;
+  updateSelectedColor(DEFAULT_COLOR);
+};
+
+/*
+ * Event Listeners
+ */
+function selectMode(e) {
+  activeModeBtn.classList.remove("active");
+  this.classList.add("active");
+  activeModeBtn = this;
+  let newColor = selectedColor.value;
+  if (activeModeBtn === randomModeBtn) {
+    newColor = generateRandomColorHex();
+  } else if (activeModeBtn === eraserModeBtn) {
+    newColor = DEFAULT_ERASER;
+  }
+  updateSelectedColor(newColor);
 }
 
 function updatePixelColor(e) {
@@ -40,17 +81,8 @@ function resetBoard() {
   setupSketchBoard(sizeRange.value);
 }
 
-function setupSketchBoard(size) {
-  sketchBoard.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-  sketchBoard.style.gridTemplateRows = `repeat(${size}, 1fr)`;
-
-  for (let i = 0; i < size * size; i++) {
-    const pixel = document.createElement("div");
-    pixel.classList.add("pixel");
-    pixel.addEventListener("mouseover", updatePixelColor);
-    pixel.addEventListener("mousedown", updatePixelColor);
-    sketchBoard.appendChild(pixel);
-  }
+function updateSizeLabel(e) {
+  sizeLabel.textContent = `${this.value} x ${this.value}`;
 }
 
 function updateOpacity(e) {
@@ -58,36 +90,10 @@ function updateOpacity(e) {
   updateSelectedColor(selectedColor.value);
 }
 
-function updateSizeLabel(e) {
-  sizeLabel.textContent = `${this.value} x ${this.value}`;
+/*
+ * Helper Methods
+ */
+
+function generateRandomColorHex() {
+  return `#${Math.floor(Math.random() * 256 ** 3).toString(16)}`;
 }
-
-function selectMode(e) {
-  activeModeBtn.classList.remove("active");
-  this.classList.add("active");
-  activeModeBtn = this;
-
-  let newColor = selectedColor.value;
-  if (activeModeBtn === randomModeBtn) {
-    newColor = generateRandomColorHex();
-  } else if (activeModeBtn === eraserModeBtn) {
-    newColor = DEFAULT_ERASER;
-  }
-  updateSelectedColor(newColor);
-}
-
-sketchBoard.addEventListener("mousedown", () => (mouseDown = true));
-sketchBoard.addEventListener("mouseup", () => (mouseDown = false));
-sizeRange.addEventListener("input", updateSizeLabel);
-opacityRange.addEventListener("input", updateOpacity);
-
-colorModeBtn.addEventListener("click", selectMode);
-randomModeBtn.addEventListener("click", selectMode);
-eraserModeBtn.addEventListener("click", selectMode);
-resetBoardBtn.addEventListener("click", resetBoard);
-
-window.onload = () => {
-  setupSketchBoard(sizeRange.value);
-  opacityRange.value = DEFAULT_OPACITY;
-  updateSelectedColor(DEFAULT_COLOR);
-};
