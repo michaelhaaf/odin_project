@@ -5,9 +5,9 @@ const randomModeBtn = document.querySelector("#randomModeBtn");
 const eraserModeBtn = document.querySelector("#eraserModeBtn");
 const resetBoardBtn = document.querySelector("#resetBoardBtn");
 const sizeRange = document.querySelector("#sizeRange");
-const sizeValue = document.querySelector("#sizeValue");
+const sizeLabel = document.querySelector("#sizeLabel");
 const opacityRange = document.querySelector("#opacityRange");
-const opacityValue = document.querySelector("#opacityValue");
+const opacityLabel = document.querySelector("#opacityLabel");
 
 const DEFAULT_COLOR = "#000000";
 const DEFAULT_ERASER = "#FFFFFF";
@@ -46,13 +46,13 @@ function setupSketchBoard(size) {
   }
 }
 
-function updateOpacity(e) {
+function updateOpacityLabel(e) {
   const percentage = ((100 * this.value) / 255).toFixed(2);
-  opacityValue.textContent = `${percentage}%`;
+  opacityLabel.textContent = `${percentage}%`;
 }
 
-function updateSize(e) {
-  sizeValue.textContent = `${this.value} x ${this.value}`;
+function updateSizeLabel(e) {
+  sizeLabel.textContent = `${this.value} x ${this.value}`;
 }
 
 function selectMode(e) {
@@ -71,8 +71,8 @@ function selectMode(e) {
 
 sketchBoard.addEventListener("mousedown", () => (mouseDown = true));
 sketchBoard.addEventListener("mouseup", () => (mouseDown = false));
-sizeRange.addEventListener("input", updateSize);
-opacityRange.addEventListener("input", updateOpacity);
+sizeRange.addEventListener("input", updateSizeLabel);
+opacityRange.addEventListener("input", updateOpacityLabel);
 
 colorModeBtn.addEventListener("click", selectMode);
 randomModeBtn.addEventListener("click", selectMode);
