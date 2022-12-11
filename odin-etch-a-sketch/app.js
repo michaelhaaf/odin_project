@@ -1,6 +1,7 @@
 const DEFAULT_COLOR = "#000000";
 const DEFAULT_ERASER = "#FFFFFF";
 const DEFAULT_OPACITY = 1.0;
+const DEFAULT_SIZE = 16;
 
 const sketchBoard = document.querySelector("#sketchBoard");
 const selectedColor = document.querySelector("#selectedColor");
@@ -28,6 +29,13 @@ resetBoardBtn.addEventListener("click", resetBoard);
 /*
  * Window load event and methods
  */
+function setLabelDefaults() {
+  sizeRange.value = DEFAULT_SIZE;
+  sizeLabel.textContent = `${DEFAULT_SIZE} x ${DEFAULT_SIZE}`;
+  opacityRange.value = DEFAULT_OPACITY;
+  opacityLabel.textContent = DEFAULT_OPACITY;
+}
+
 function setupSketchBoard(size) {
   sketchBoard.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   sketchBoard.style.gridTemplateRows = `repeat(${size}, 1fr)`;
@@ -46,8 +54,8 @@ function updateSelectedColor(newColorHex) {
 }
 
 window.onload = () => {
+  setLabelDefaults();
   setupSketchBoard(sizeRange.value);
-  opacityRange.value = DEFAULT_OPACITY;
   updateSelectedColor(DEFAULT_COLOR);
 };
 
