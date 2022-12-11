@@ -64,8 +64,8 @@ window.onload = () => {
  */
 function selectMode(e) {
   activeModeBtn.classList.remove("active");
-  this.classList.add("active");
-  activeModeBtn = this;
+  e.target.classList.add("active");
+  activeModeBtn = e.target;
   let newColor = selectedColor.value;
   if (activeModeBtn === randomModeBtn) {
     newColor = generateRandomColorHex();
@@ -80,8 +80,8 @@ function updatePixelColor(e) {
   if (activeModeBtn === randomModeBtn) {
     updateSelectedColor(generateRandomColorHex());
   }
-  this.style.backgroundColor = selectedColor.value;
-  this.style.opacity = opacityRange.value;
+  e.target.style.backgroundColor = selectedColor.value;
+  e.target.style.opacity = opacityRange.value;
 }
 
 function resetBoard() {
@@ -90,7 +90,7 @@ function resetBoard() {
 }
 
 function updateSizeLabel(e) {
-  sizeLabel.textContent = `${this.value} x ${this.value}`;
+  sizeLabel.textContent = `${e.target.value} x ${e.target.value}`;
 }
 
 function updateOpacity(e) {
