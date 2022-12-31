@@ -10,8 +10,6 @@
   --button-red-hover: #eb6f92;
   --button-blue: #286983;
   --button-blue-hover: #338fb0;
-
-
 }
 
 html,
@@ -29,10 +27,6 @@ body {
   background-color: var(--background);
   color: var(--font);
   margin-bottom: 100px;
-}
-
-button {
-  cursor: pointer;
 }
 
 .header {
@@ -60,7 +54,7 @@ button {
 .screen {
   background-color: var(--screen);
   border: 2px var(--border) solid;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 5px;
   margin-bottom: 20px;
 
@@ -71,11 +65,13 @@ button {
 
 .screen-previous {
   min-height: 32px;
+  line-height: 32px;
   font-size: 20px;
 }
 
 .screen-current {
   min-height: 64px;
+  line-height: 64px;
   font-size: 40px;
 }
 
@@ -94,28 +90,35 @@ button {
   padding: 20px;
   border: 2px var(--border) solid;
   border-radius: 5px;
+
   text-align: center;
   font-size: 20px;
+  user-select: none;
+  cursor: pointer;
 }
 
 .calc-button:hover {
   background-color: var(--button-hover);
 }
 
-.button-blue {
-  background-color: var(--button-blue);
+.calc-button:active {
+  background-color: var(--button);
 }
 
 .button-blue:hover {
   background-color: var(--button-blue-hover);
 }
 
-.button-red {
-  background-color: var(--button-red);
+.button-blue, .button-blue:active {
+  background-color: var(--button-blue);
 }
 
 .button-red:hover {
   background-color: var(--button-red-hover);
+}
+
+.button-red, .button-red:active {
+  background-color: var(--button-red);
 }
 
 .footer {
