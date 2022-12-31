@@ -10,3 +10,48 @@ body {
   flex-direction: column;
 }
 
+.calculator {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  width: 400px;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.screen {
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.fn-button-grid {
+  display: grid;
+  grid-column: span 2;
+}
+
+.main-button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-grap: 10px;
+}
+
+.calc-button {
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+}
