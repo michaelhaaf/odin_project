@@ -1,4 +1,6 @@
 :root {
+  --link: #3e8fb0;
+  --link-visited: #c4a7e7;
   --background: #232136;
   --border: #e0def4;
   --font: #d9d7e1;
@@ -9,7 +11,7 @@
   --button-red: #b4637a;
   --button-red-hover: #eb6f92;
   --button-blue: #286983;
-  --button-blue-hover: #338fb0;
+  --button-blue-hover: #3e8fb0;
 }
 
 html,
@@ -28,6 +30,15 @@ body {
   color: var(--font);
   margin-bottom: 100px;
 }
+
+a {
+  color: var(--link);
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
 
 .header {
   display: flex;
