@@ -1,6 +1,6 @@
-# Etch-a-sketch
+# Calculator
 
-My completed rendition of the [Odin Project Etch-a-Sketch Project](https://www.theodinproject.com/lessons/foundations-etch-a-sketch). Stylistically inspired by some of the top solutions available at the time of this writing.
+My completed rendition of the [Odin Project Calculator Project](https://www.theodinproject.com/lessons/foundations-calculator). Stylistically inspired by some of the top solutions available at the time of this writing.
 
 Copyright (C) 2022 michaelhaaf
 
