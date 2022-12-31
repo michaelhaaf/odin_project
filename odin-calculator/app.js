@@ -34,6 +34,8 @@ const currentDisplayDiv = document.querySelector(".display-current");
 const previousDisplayDiv = document.querySelector(".display-previous");
 const operationButtons = Array.from(document.querySelectorAll(".operation"));
 const numberButtons = Array.from(document.querySelectorAll(".number"));
+const clearButton = document.querySelector("#clear-button");
+const deleteButton = document.querySelector("#delete-button");
 
 const operations = new Map();
 operations.set(document.querySelector("#add-button"), add);
@@ -67,6 +69,19 @@ numberButtons.map((button) => {
     updateDisplay(currentDisplayDiv, currentOperand);
   });
 });
+
+clearButton.addEventListener("click", () => {
+  queuedOperation = add;
+  currentOperand = "";
+  queuedOperand = "";
+  updateDisplay(currentDisplayDiv, "0");
+  updateDisplay(previousDisplayDiv, "");
+})
+
+deleteButton.addEventListener("click", () => {
+  currentOperand = currentOperand.substr(0, currentOperand.length-1);
+  updateDisplay(currentDisplayDiv, currentOperand);
+})
 
 /*
  * Window load event and methods
