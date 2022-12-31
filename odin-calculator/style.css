@@ -1,46 +1,121 @@
+:root {
+  --background: #232136;
+  --border: #e0def4;
+  --font: #d9d7e1;
+  --calculator: #232136;
+  --screen: #232136;
+  --button: #232136;
+  --button-hover: #393552;
+  --button-red: #b4637a;
+  --button-red-hover: #eb6f92;
+  --button-blue: #286983;
+  --button-blue-hover: #338fb0;
+
+
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
-.body {
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--font);
+  margin-bottom: 100px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
 }
 
 .calculator {
-  display: flex;
-  flex-direction: column;
-  border: 2px solid black;
+  border: 2px var(--border) solid;
+  background-color: var(--calculator);
   width: 400px;
   padding: 20px;
   border-radius: 15px;
 }
 
 .screen {
-  border: 2px solid black;
+  background-color: var(--screen);
+  border: 2px var(--border) solid;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 20px;
+
+  text-align: right;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
-.fn-button-grid {
+.screen-previous {
+  min-height: 32px;
+  font-size: 20px;
+}
+
+.screen-current {
+  min-height: 64px;
+  font-size: 40px;
+}
+
+.button-grid {
   display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+.span-2 {
   grid-column: span 2;
 }
 
-.main-button-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-grap: 10px;
+.calc-button {
+  background-color: var(--button);
+  padding: 20px;
+  border: 2px var(--border) solid;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 20px;
 }
 
-.calc-button {
-  padding: 20px;
-  border: 2px solid black;
-  border-radius: 5px;
+.calc-button:hover {
+  background-color: var(--button-hover);
+}
+
+.button-blue {
+  background-color: var(--button-blue);
+}
+
+.button-blue:hover {
+  background-color: var(--button-blue-hover);
+}
+
+.button-red {
+  background-color: var(--button-red);
+}
+
+.button-red:hover {
+  background-color: var(--button-red-hover);
 }
 
 .footer {
