@@ -5,7 +5,7 @@
   --border: #e0def4;
   --font: #d9d7e1;
   --calculator: #232136;
-  --screen: #232136;
+  --display: #232136;
   --button: #232136;
   --button-hover: #393552;
   --button-red: #b4637a;
@@ -62,8 +62,8 @@ a:visited {
   border-radius: 15px;
 }
 
-.screen {
-  background-color: var(--screen);
+.display {
+  background-color: var(--display);
   border: 2px var(--border) solid;
   padding: 10px 20px;
   border-radius: 5px;
@@ -74,13 +74,13 @@ a:visited {
   word-break: break-all;
 }
 
-.screen-previous {
+.display-previous {
   min-height: 32px;
   line-height: 32px;
   font-size: 20px;
 }
 
-.screen-current {
+.display-current {
   min-height: 64px;
   line-height: 64px;
   font-size: 40px;
