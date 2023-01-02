@@ -91,7 +91,15 @@ deleteButton.addEventListener("click", () => {
 equalsButton.addEventListener("click", () => {
   let result = operate(queuedOperation, +queuedOperand, +currentOperand);
   updateDisplay(currentDisplayDiv, result);
-  updateDisplay(previousDisplayDiv, queuedOperand + " " + buttons.get(queuedOperation).textContent + " " + currentOperand + " =")
+  updateDisplay(
+    previousDisplayDiv,
+    [
+      queuedOperand,
+      buttons.get(queuedOperation).textContent,
+      currentOperand,
+      " =",
+    ].join(" ")
+  );
 
   queuedOperand = result;
   currentOperand = "";
