@@ -41,8 +41,8 @@ const resetRegisters = function () {
   return { X: "", Y: "0", O: null };
 };
 
-const updateXRegister = function (button) {
-  registers.X += button.textContent;
+const updateXRegister = function (textContent) {
+  registers.X += textContent;
   updateDisplay(currentDisplayDiv, registers.X);
 };
 
@@ -78,31 +78,41 @@ const calculate = function () {
   registers.Y = isNaN(result) ? "0" : result;
 };
 
-const updateOperation = function (button) {
+const updateOperation = function (textContent) {
   registers.O ? calculate() : shiftRegisters();
-  registers.O = operations.get(button);
+  registers.O = operations.get(textContent);
   updateDisplay(
     previousDisplayDiv,
-    `${prettyDisplay(registers.Y)} ${button.textContent}`
+    `${prettyDisplay(registers.Y)} ${textContent}`
   );
 };
 
 const enterZero = function () {
   if (registers.X != "0") {
-    updateXRegister(zeroButton);
+    updateXRegister(zeroButton.textContent);
   }
 };
 
 const enterDecimal = function () {
   if (registers.X && !registers.X.includes(".")) {
-    updateXRegister(decimalButton);
+    updateXRegister(decimalButton.textContent);
   }
 };
 
 const translateKeyPress = function (e) {
-  if (typeof keyPresses.get(e.key) !== "function") return;
-  keyPresses.get(e.key)();
-  e.preventDefault();
+  if (typeof keyPresses.get(e.key) === "function") {
+    keyPresses.get(e.key)();
+    e.preventDefault();
+  } else if (e.key > 0 && e.key <= 9) {
+    updateXRegister(e.key);
+    e.preventDefault();
+  } else if (typeof operations.get(e.key) === "function") {
+    updateOperation(e.key);
+    e.preventDefault();
+  } else if (typeof keyConversions.get(e.key) !== "undefined") {
+    updateOperation(keyConversions.get(e.key));
+    e.preventDefault();
+  }
 }
 
 
@@ -122,10 +132,10 @@ const zeroButton = document.querySelector("#zero-button");
 const decimalButton = document.querySelector("#decimal-button");
 
 const operations = new Map();
-operations.set(document.querySelector("#add-button"), add);
-operations.set(document.querySelector("#subtract-button"), subtract);
-operations.set(document.querySelector("#divide-button"), divide);
-operations.set(document.querySelector("#multiply-button"), multiply);
+operations.set("+", add);
+operations.set("-", subtract);
+operations.set("÷", divide);
+operations.set("×", multiply);
 
 const buttons = new Map();
 buttons.set(add, document.querySelector("#add-button"));
@@ -137,17 +147,22 @@ const keyPresses = new Map();
 keyPresses.set("0", enterZero);
 keyPresses.set(".", enterDecimal);
 keyPresses.set("=", calculate);
+keyPresses.set("Enter", calculate);
 keyPresses.set("Backspace", deleteEntry);
 keyPresses.set("r", clearAll);
+
+const keyConversions = new Map();
+keyConversions.set("/", "÷");
+keyConversions.set("*", "×");
 
 let registers = resetRegisters();
 
 operationButtons.map((button) =>
-  button.addEventListener("click", () => updateOperation(button))
+  button.addEventListener("click", () => updateOperation(button.textContent))
 );
 
 numberButtons.map((button) =>
-  button.addEventListener("click", () => updateXRegister(button))
+  button.addEventListener("click", () => updateXRegister(button.textContent))
 );
 
 clearButton.addEventListener("click", clearAll);
