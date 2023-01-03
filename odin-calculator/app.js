@@ -75,6 +75,18 @@ const updateOperation = function (button) {
   updateDisplay(previousDisplayDiv, `${registers.Y} ${button.textContent}`);
 };
 
+const enterZero = function () {
+  if (registers.X && registers.X != "0") {
+    updateXRegister(zeroButton);
+  }
+}
+
+const enterDecimal = function () {
+  if (registers.X && !registers.X.includes(".")) {
+    updateXRegister(decimalButton);
+  }
+}
+
 /*
  * Setup
  */
@@ -86,6 +98,8 @@ const numberButtons = Array.from(document.querySelectorAll(".number"));
 const clearButton = document.querySelector("#clear-button");
 const deleteButton = document.querySelector("#delete-button");
 const equalsButton = document.querySelector("#equals-button");
+const zeroButton = document.querySelector("#zero-button");
+const decimalButton = document.querySelector("#decimal-button");
 
 const operations = new Map();
 operations.set(document.querySelector("#add-button"), add);
@@ -112,6 +126,8 @@ numberButtons.map((button) =>
 clearButton.addEventListener("click", clear);
 deleteButton.addEventListener("click", deleteEntry);
 equalsButton.addEventListener("click", calculate);
+decimalButton.addEventListener("click", enterDecimal);
+zeroButton.addEventListener("click", enterZero);
 
 /*
  * Window load event and methods
