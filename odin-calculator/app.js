@@ -11,7 +11,7 @@ const subtract = function (x, y) {
 };
 
 const divide = function (x, y) {
-  return x / y;
+  return (y === 0) ? "error" : x / y;
 };
 
 const multiply = function (x, y) {
@@ -35,6 +35,7 @@ const resetRegisters = function () {
 };
 
 const updateXRegister = function (button) {
+  if (registers.X.length >= DISPLAY_WIDTH) return;
   registers.X += button.textContent;
   updateDisplay(currentDisplayDiv, registers.X);
 }
@@ -66,7 +67,7 @@ const calculate = function () {
   );
   registers.O = null;
   registers.X = "";
-  registers.Y = result;
+  registers.Y = isNaN(result)? "0": result;
 };
 
 const updateOperation = function (button) {
@@ -76,7 +77,7 @@ const updateOperation = function (button) {
 };
 
 const enterZero = function () {
-  if (registers.X && registers.X != "0") {
+  if (registers.X != "0") {
     updateXRegister(zeroButton);
   }
 }
@@ -91,6 +92,7 @@ const enterDecimal = function () {
  * Setup
  */
 
+const DISPLAY_WIDTH = 10;
 const currentDisplayDiv = document.querySelector(".display-current");
 const previousDisplayDiv = document.querySelector(".display-previous");
 const operationButtons = Array.from(document.querySelectorAll(".operation"));
