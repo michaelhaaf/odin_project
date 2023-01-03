@@ -28,7 +28,9 @@ const operate = function (operation, x, y) {
 
 const prettyDisplay = function (content) {
   if (content === "" || isNaN(content)) return content;
-  return content.toString().length >= DISPLAY_WIDTH ? parseFloat(content).toPrecision(10) : content;
+  return content.toString().length >= DISPLAY_WIDTH
+    ? parseFloat(content).toPrecision(10)
+    : content;
 };
 
 const updateDisplay = function (displayDiv, content) {
@@ -67,7 +69,9 @@ const calculate = function () {
   updateDisplay(currentDisplayDiv, prettyDisplay(result));
   updateDisplay(
     previousDisplayDiv,
-    `${prettyDisplay(registers.Y)} ${buttons.get(registers.O).textContent} ${prettyDisplay(registers.X)} =`
+    `${prettyDisplay(registers.Y)} ${
+      buttons.get(registers.O).textContent
+    } ${prettyDisplay(registers.X)} =`
   );
   registers.O = null;
   registers.X = "";
@@ -77,7 +81,10 @@ const calculate = function () {
 const updateOperation = function (button) {
   registers.O ? calculate() : shiftRegisters();
   registers.O = operations.get(button);
-  updateDisplay(previousDisplayDiv, `${prettyDisplay(registers.Y)} ${button.textContent}`);
+  updateDisplay(
+    previousDisplayDiv,
+    `${prettyDisplay(registers.Y)} ${button.textContent}`
+  );
 };
 
 const enterZero = function () {
