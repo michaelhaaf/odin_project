@@ -52,7 +52,7 @@ const shiftRegisters = function () {
   registers.X = "";
 };
 
-const clear = function () {
+const clearAll = function () {
   registers = resetRegisters();
   updateDisplay(currentDisplayDiv, "0");
   updateDisplay(previousDisplayDiv, "");
@@ -99,6 +99,13 @@ const enterDecimal = function () {
   }
 };
 
+const translateKeyPress = function (e) {
+  if (typeof keyPresses.get(e.key) !== "function") return;
+  keyPresses.get(e.key)();
+  e.preventDefault();
+}
+
+
 /*
  * Setup
  */
@@ -126,6 +133,13 @@ buttons.set(subtract, document.querySelector("#subtract-button"));
 buttons.set(divide, document.querySelector("#divide-button"));
 buttons.set(multiply, document.querySelector("#multiply-button"));
 
+const keyPresses = new Map();
+keyPresses.set("0", enterZero);
+keyPresses.set(".", enterDecimal);
+keyPresses.set("=", calculate);
+keyPresses.set("Backspace", deleteEntry);
+keyPresses.set("r", clearAll);
+
 let registers = resetRegisters();
 
 operationButtons.map((button) =>
@@ -136,11 +150,12 @@ numberButtons.map((button) =>
   button.addEventListener("click", () => updateXRegister(button))
 );
 
-clearButton.addEventListener("click", clear);
+clearButton.addEventListener("click", clearAll);
 deleteButton.addEventListener("click", deleteEntry);
 equalsButton.addEventListener("click", calculate);
 decimalButton.addEventListener("click", enterDecimal);
 zeroButton.addEventListener("click", enterZero);
+window.addEventListener("keydown", translateKeyPress);
 
 /*
  * Window load event and methods
