@@ -39,6 +39,12 @@ const updateXRegister = function (button) {
   updateDisplay(currentDisplayDiv, registers.X);
 }
 
+const shiftRegisters = function () {
+  if (!registers.X) return;
+  registers.Y = registers.X;
+  registers.X = "";
+}
+
 const clear = function () {
   registers = resetRegisters();
   updateDisplay(currentDisplayDiv, "0");
@@ -51,6 +57,7 @@ const deleteEntry = function () {
 };
 
 const calculate = function () {
+  if (!registers.O || !registers.X) return;
   let result = operate(registers.O, +registers.Y, +registers.X);
   updateDisplay(currentDisplayDiv, result);
   updateDisplay(
@@ -63,11 +70,7 @@ const calculate = function () {
 };
 
 const updateOperation = function (button) {
-  if (registers.O && registers.X) calculate();
-  if (!registers.O && registers.X) {
-    registers.Y = registers.X;
-    registers.X = "";
-  }
+  registers.O ? calculate() : shiftRegisters();
   registers.O = operations.get(button);
   updateDisplay(previousDisplayDiv, `${registers.Y} ${button.textContent}`);
 };
