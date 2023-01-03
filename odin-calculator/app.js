@@ -1,16 +1,10 @@
 /*
- * Functions
+ * Calculator Functions
  */
-
-const updateDisplay = function (displayDiv, output) {
-  displayDiv.textContent = output;
-};
 
 const add = function (x, y) {
   return x + y;
 };
-
-const identity = add;
 
 const subtract = function (x, y) {
   return x - y;
@@ -26,6 +20,56 @@ const multiply = function (x, y) {
 
 const operate = function (operation, x, y) {
   return operation(x, y);
+};
+
+/*
+ * Functions
+ */
+
+const updateDisplay = function (displayDiv, content) {
+  displayDiv.textContent = content;
+};
+
+const resetRegisters = function () {
+  return { X: "", Y: "0", O: null };
+};
+
+const updateXRegister = function (button) {
+  registers.X += button.textContent;
+  updateDisplay(currentDisplayDiv, registers.X);
+}
+
+const clear = function () {
+  registers = resetRegisters();
+  updateDisplay(currentDisplayDiv, "0");
+  updateDisplay(previousDisplayDiv, "");
+};
+
+const deleteEntry = function () {
+  registers.X = "";
+  updateDisplay(currentDisplayDiv, "0");
+};
+
+const calculate = function () {
+  let result = operate(registers.O, +registers.Y, +registers.X);
+  updateDisplay(currentDisplayDiv, result);
+  updateDisplay(
+    previousDisplayDiv,
+    `${registers.Y} ${buttons.get(registers.O).textContent} ${registers.X} =`
+  );
+  registers.O = null;
+  registers.X = "";
+  registers.Y = result;
+};
+
+const updateOperation = function (button) {
+  if (registers.O && registers.X) calculate();
+  if (!registers.O && registers.X) {
+    registers.Y = registers.X;
+    registers.X = "";
+  }
+  registers.O = operations.get(button);
+  updateDisplay(previousDisplayDiv, `${registers.Y} ${button.textContent}`);
 };
 
 /*
@@ -45,66 +89,26 @@ operations.set(document.querySelector("#add-button"), add);
 operations.set(document.querySelector("#subtract-button"), subtract);
 operations.set(document.querySelector("#divide-button"), divide);
 operations.set(document.querySelector("#multiply-button"), multiply);
+
 const buttons = new Map();
 buttons.set(add, document.querySelector("#add-button"));
 buttons.set(subtract, document.querySelector("#subtract-button"));
 buttons.set(divide, document.querySelector("#divide-button"));
 buttons.set(multiply, document.querySelector("#multiply-button"));
 
-let queuedOperation = identity;
-let currentOperand = "";
-let queuedOperand = "";
+let registers = resetRegisters();
 
-operationButtons.map((button) => {
-  button.addEventListener("click", () => {
-    let result = operate(queuedOperation, +queuedOperand, +currentOperand);
-    updateDisplay(currentDisplayDiv, result);
+operationButtons.map((button) =>
+  button.addEventListener("click", () => updateOperation(button))
+);
 
-    queuedOperation = operations.get(button);
-    queuedOperand = result;
-    currentOperand = "";
+numberButtons.map((button) =>
+  button.addEventListener("click", () => updateXRegister(button))
+);
 
-    updateDisplay(previousDisplayDiv, queuedOperand + " " + button.textContent);
-  });
-});
-
-numberButtons.map((button) => {
-  button.addEventListener("click", () => {
-    currentOperand += button.textContent;
-    updateDisplay(currentDisplayDiv, currentOperand);
-  });
-});
-
-clearButton.addEventListener("click", () => {
-  queuedOperation = identity;
-  currentOperand = "";
-  queuedOperand = "";
-  updateDisplay(currentDisplayDiv, "0");
-  updateDisplay(previousDisplayDiv, "");
-});
-
-deleteButton.addEventListener("click", () => {
-  currentOperand = currentOperand.substr(0, currentOperand.length - 1);
-  updateDisplay(currentDisplayDiv, currentOperand);
-});
-
-equalsButton.addEventListener("click", () => {
-  let result = operate(queuedOperation, +queuedOperand, +currentOperand);
-  updateDisplay(currentDisplayDiv, result);
-  updateDisplay(
-    previousDisplayDiv,
-    [
-      queuedOperand,
-      buttons.get(queuedOperation).textContent,
-      currentOperand,
-      " =",
-    ].join(" ")
-  );
-
-  queuedOperand = result;
-  currentOperand = "";
-  queuedOperation = identity;
-});
+clearButton.addEventListener("click", clear);
+deleteButton.addEventListener("click", deleteEntry);
+equalsButton.addEventListener("click", calculate);
 
 /*
  * Window load event and methods
