@@ -1,0 +1,76 @@
+:root {
+  --link: #3e8fb0;
+  --link-visited: #c4a7e7;
+  --background: #232136;
+  --font: #d9d7e1;
+
+  /* --border: #e0def4; */
+  /* --button-red: #b4637a; */
+  /* --button-red-hover: #eb6f92; */
+  /* --button-blue: #286983; */
+  /* --button-blue-hover: #3e8fb0; */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--font);
+}
+
+a {
+  color: var(--link);
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+}
+
+.hero {
+  background: url("./assets/background.jpg");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: no-repeat center var(--background);
+  opacity: 0.8;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  padding: 20px 30px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 10px;
+}
+
+.form-title {
+  grid-column: span 2;
+}
