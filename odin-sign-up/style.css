@@ -8,6 +8,7 @@
   --link-visited: #c4a7e7;
   --logo: #c4a7e7;
   --input-focus: #c4a7e7;
+  --button: #c4a7e7;
 
   --font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -122,6 +123,22 @@ h1 {
 
 .form-input label {
   margin-bottom: 10px;
+}
+
+button{
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--button);
+    font-weight: 700;
+    font-size: 1.2em;
+    border: 2px solid var(--button);
+    border-radius: 5px;
+    padding: 10px 40px;
+    margin: 40px 0;
+}
+
+button:hover{
+    background-color: var(--button);
+    color: var(--background);
 }
 
 @media only screen and (max-width: 700px) {
