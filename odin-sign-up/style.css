@@ -155,25 +155,3 @@ button:hover {
     background-color: var(--button);
     color: var(--background);
 }
-
-@media only screen and (max-width: 700px) {
-  /* .speaker-form-header, */
-  /* .speaker-form { */
-  /*   width: 600px; */
-  /* } */
-  /* .form-row { */
-  /*   flex-direction: row; */
-  /*   align-items: flex-start; /* To avoid stretching */ */
-  /*   margin-bottom: 20px; */
-  /* } */
-  /* .form-row input[type='text'] { */
-  /*   width: 250px; */
-  /*   height: initial; */
-  /* } */
-  /* .form-row label { */
-  /*   text-align: right; */
-  /*   width: 120px; */
-  /*   margin-top: 7px; */
-  /*   padding-right: 20px; */
-  /* } */
-}
