@@ -1,30 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap");
+
 :root {
   --link: #3e8fb0;
   --link-visited: #c4a7e7;
   --background: #232136;
-  --font: #d9d7e1;
+  --font-color: #d9d7e1;
+  --shadow: #393552;
 
   /* --border: #e0def4; */
   /* --button-red: #b4637a; */
-  /* --button-red-hover: #eb6f92; */
+  --logo: #eb6f92;
   /* --button-blue: #286983; */
   /* --button-blue-hover: #3e8fb0; */
-}
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  background-color: var(--background);
-  color: var(--font);
+  --font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --logo-font-family: "Moon Dance";
 }
 
 a {
@@ -35,29 +26,62 @@ a:visited {
   color: var(--link-visited);
 }
 
+html,
+body,
+main {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--font-color);
+  font-family: var(--font-family);
+}
+
 main {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
+  height: 100vh;
+  width: 100vw;
 }
 
 .hero {
-  background: url("./assets/background.jpg");
+  background-image: url("./assets/background.jpg");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 40vw;
+}
+
+.logo-banner {
+  flex: auto;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  opacity: 0.8;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: no-repeat center var(--background);
-  opacity: 0.8;
+  color: var(--logo);
+}
+
+.h1 {
+  font-family: var(--logo-font-family);
 }
 
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 60vw;
 }
 
 .card {
@@ -67,10 +91,29 @@ main {
 .form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 5px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 10px;
+  grid-gap: 10px;
+  box-shadow: var(--shadow) 0px 0px 5px;
 }
 
 .form-title {
   grid-column: span 2;
+}
+
+.form-input {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: column wrap;
+  margin-bottom: 20px;
+}
+
+.form-input input {
+  width: 250px;
+  height: initial;
+}
+
+.form-row label {
+  text-align: right;
+  width: 120px;
+  margin-top: 7px;
+  padding-right: 20px;
 }
