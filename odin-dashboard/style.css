@@ -1,0 +1,55 @@
+:root {
+  --header-background: #232136;
+  --content-background: #393552;
+  --sidebar-background: #eb6f92;
+  --card-background: #232136;
+  --card-highlight: #3e8fb0;
+  --link: #3e8fb0;
+  --link-visited: #c4a7e7;
+  --font: #e0def4;
+  --font-low-contrast: #d9d7e1;
+  --font-light-bg: #232136;
+  --button: #eb6f92;
+}
+
+html,
+body,
+container {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: var(--link);
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 4fr;
+}
+
+.header {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  background: var(--header-background);
+  color: var(--font);
+}
+
+.sidebar { 
+  grid-column-start: 1;
+  grid-row: 1 / span 2;
+  background: var(--sidebar-background);
+  color: var(--font-light-bg);
+}
+
+.content {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  background: var(--content-background);
+  color: var(--font);
+}
