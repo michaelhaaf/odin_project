@@ -163,10 +163,10 @@ h2 {
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
-  list-style: none;
 }
 
 .sidebar ul {
+  list-style: none;
   padding: 0;
 }
 
@@ -179,6 +179,13 @@ h2 {
   background: var(--content-background);
   color: var(--font);
   padding: 0.5rem 2rem;
+}
+
+.project-grid ul,
+.announcement-grid ul,
+.trending-grid ul {
+  list-style: none;
+  padding: 0;
 }
 
 .project-container {
