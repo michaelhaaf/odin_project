@@ -16,6 +16,7 @@
     brightness(95%) contrast(88%);
   --filter-light: invert(97%) sepia(58%) saturate(986%) hue-rotate(180deg)
     brightness(100%) contrast(92%);
+  --filter-active: invert(68%) sepia(81%) saturate(2957%) hue-rotate(303deg) brightness(99%) contrast(86%);
 
   --font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -50,9 +51,10 @@ button {
   border-radius: 20px;
   padding: 10px 40px;
   margin: 40px 0;
+  cursor: pointer;
 }
 
-button:focus,
+button:active,
 button:hover {
   outline: none;
   box-shadow: none;
@@ -60,12 +62,18 @@ button:hover {
   color: var(--header-background);
 }
 
+button:active {
+  transform: scale(0.9);
+}
+
 h1 {
   font-size: 2rem;
+  cursor: pointer;
 }
 
 h2 {
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 ul {
@@ -281,6 +289,14 @@ ul {
   align-self: end;
 }
 
+.icon {
+  cursor: pointer;
+}
+
+.icon:active {
+  transform: scale(0.9);
+}
+
 .icon.light {
   filter: var(--filter-black) var(--filter-light);
 }
@@ -297,4 +313,8 @@ ul {
 .icon.large {
   height: 5rem;
   width: 5rem;
+}
+
+.icon.light:hover {
+  filter: var(--filter-black) var(--filter-active);
 }
