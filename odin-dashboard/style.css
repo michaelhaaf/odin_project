@@ -10,6 +10,7 @@
   --font-low-contrast: #d9d7e1;
   --font-light-bg: #232136;
   --button: #eb6f92;
+  --input-focus: #3e8fb0;
 
   --filter-black: brightness(0) saturate(100%);
   --filter-dark: invert(9%) sepia(8%) saturate(3970%) hue-rotate(206deg)
@@ -111,9 +112,19 @@ ul {
 .search-container input {
   border-radius: 20px;
   border: none;
+  box-shadow: none;
+  outline: none;
   background-color: var(--content-background);
+  color: var(--font-low-contrast);
+  border: 4px solid var(--font-color);
   height: 1.5rem;
-  width: 24rem;
+  width: 36rem;
+}
+
+.search-container input:focus {
+  border: 3px solid var(--input-focus);
+  outline: none;
+  box-shadow: none;
 }
 
 .profile-container {
