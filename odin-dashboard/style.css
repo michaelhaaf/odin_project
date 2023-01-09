@@ -17,7 +17,8 @@
     brightness(95%) contrast(88%);
   --filter-light: invert(97%) sepia(58%) saturate(986%) hue-rotate(180deg)
     brightness(100%) contrast(92%);
-  --filter-active: invert(68%) sepia(81%) saturate(2957%) hue-rotate(303deg) brightness(99%) contrast(86%);
+  --filter-active: invert(68%) sepia(81%) saturate(2957%) hue-rotate(303deg)
+    brightness(99%) contrast(86%);
 
   --font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
