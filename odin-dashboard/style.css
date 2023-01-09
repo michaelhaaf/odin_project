@@ -12,8 +12,10 @@
   --button: #eb6f92;
 
   --filter-black: brightness(0) saturate(100%);
-  --filter-dark: invert(9%) sepia(8%) saturate(3970%) hue-rotate(206deg) brightness(95%) contrast(88%);
-  --filter-light: invert(97%) sepia(58%) saturate(986%) hue-rotate(180deg) brightness(100%) contrast(92%);
+  --filter-dark: invert(9%) sepia(8%) saturate(3970%) hue-rotate(206deg)
+    brightness(95%) contrast(88%);
+  --filter-light: invert(97%) sepia(58%) saturate(986%) hue-rotate(180deg)
+    brightness(100%) contrast(92%);
 
   --font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -116,7 +118,7 @@ a:visited {
   gap: 1rem;
 }
 
-.sidebar { 
+.sidebar {
   grid-column-start: 1;
   grid-row: 1 / span 2;
   display: grid;
@@ -124,7 +126,7 @@ a:visited {
   color: var(--font-light-bg);
 }
 
-.sidebar-item, 
+.sidebar-item,
 .sidebar li {
   display: flex;
   align-items: center;
