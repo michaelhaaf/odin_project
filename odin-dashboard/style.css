@@ -277,7 +277,6 @@ ul {
   align-self: end;
 }
 
-
 .icon.light {
   filter: var(--filter-black) var(--filter-light);
 }
