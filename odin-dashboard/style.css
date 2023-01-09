@@ -174,8 +174,8 @@ h2 {
   grid-column-start: 2;
   grid-row-start: 2;
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 3fr 1fr;
   background: var(--content-background);
   color: var(--font);
   padding: 0.5rem 2rem;
