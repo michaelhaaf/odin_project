@@ -108,8 +108,8 @@ button:hover {
   display: grid;
   align-items: center;
   grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  gap: 0.5rem;
+  grid-template-rows: auto auto;
+  gap: 0 0.5rem;
   padding-bottom: 1rem;
 }
 
@@ -120,13 +120,15 @@ button:hover {
 .intro-container p {
   grid-area: 1 / 2 / 1 / 2;
   margin: 0;
-  padding: 0;
+  padding: 0.2rem 0;
+  align-self: end;
 }
 
 .intro-container h1 {
   grid-area: 2 / 2 / 2 / 2;
   margin: 0;
-  padding: 0;
+  padding: 0.2rem 0;
+  align-self: start;
 }
 
 .button-container {
