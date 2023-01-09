@@ -143,8 +143,10 @@ button:hover {
   grid-column-start: 1;
   grid-row: 1 / span 2;
   display: grid;
+  grid-template-rows: auto auto 1fr;
   background: var(--sidebar-background);
   color: var(--font-light-bg);
+  padding: 1rem;
 }
 
 .sidebar-item,
@@ -152,7 +154,12 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  gap: 1rem;
   list-style: none;
+}
+
+.sidebar ul {
+  padding: 0;
 }
 
 .content {
