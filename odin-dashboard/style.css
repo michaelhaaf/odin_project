@@ -68,6 +68,11 @@ h2 {
   font-size: 1.5rem;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 .container {
   display: grid;
   grid-template-columns: 1fr 4fr;
@@ -165,11 +170,6 @@ h2 {
   gap: 1rem;
 }
 
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
 .content {
   grid-column-start: 2;
   grid-row-start: 2;
@@ -178,13 +178,6 @@ h2 {
   grid-template-columns: 3fr 1fr;
   background: var(--content-background);
   color: var(--font);
-}
-
-.project-container ul,
-.announcement-container ul,
-.trending-container ul {
-  list-style: none;
-  padding: 0;
 }
 
 .project-container {
@@ -231,6 +224,15 @@ h2 {
   grid-area: 1 / 2 / 2 / 3;
   padding: 0.5rem 2rem;
   padding-left: 0;
+}
+
+.announcement-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: var(--card-background);
+  border-radius: 20px;
+  padding: 1rem 2rem;
 }
 
 .trending-container {
